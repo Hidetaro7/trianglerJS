@@ -1,12 +1,25 @@
-function Triangler (c, src, px, py, segm, loadfn) {
-	
-		// public global var
+/* =========================================================
 
+// triangler.js
+
+
+// Date: 2011-09-29
+// Last Update: 2011-09-29
+// Author: Hidetaro7 (Hideki Akiba)
+// Mail: hidetaro7@gmail.com
+// Web: http://akibahideki.com/blog/html5-canvas-1/jsas3drawtriangles.html
+// Belong: ECOLONIQ Design Label
+
+// for <canvas>element supported browser.
+// It confirmed browser Safari5, Chrome6, Firefox3.6, Opera11, InternetExploler9 on Opening to the public day.
+
+
+// ========================================================= */
+
+
+function Triangler (c, src, px, py, segm, loadfn) {
 		// private global var
 		var _this = this, seg = 1, ctx, canvas, img, w = 0, h = 0, seg = 10, meshToggle = false, pivot = {x: 0, y: 0}, meshes=[];
-	
-		// public init(canvas, img, segment) : Triangler
-		
 			canvas = document.getElementById(c);
 			ctx = canvas.getContext("2d");
 			seg = segm;
@@ -26,11 +39,6 @@ function Triangler (c, src, px, py, segm, loadfn) {
 				}
 				loadfn({"target": img, "canvas": canvas});
 			}
-			
-	
-	// ----------- property ----------- //
-
-	// ----------- method ----------- //
 
 		// private Mesh : void
 		function Mesh (_x, _y, _corner) { //個別管理用
@@ -48,7 +56,6 @@ function Triangler (c, src, px, py, segm, loadfn) {
 		// public draw : Triangler
 		this.draw = function (){
 			ctx.clearRect(0,0, canvas.width, canvas.height);
-			//console.log(canvas.width)
 			var l = meshes.length, v = meshes;
 			for( var i=0; i<l; i++ ) {
 				if(!v[i].corner) {
@@ -90,24 +97,18 @@ function Triangler (c, src, px, py, segm, loadfn) {
 					if(!v[i+1].corner) { 
 					//端っこ以外
 						ctx.clip();
-						ctx.drawImage(img, v[i].pivotX-_this.getOrigin().x, v[i].pivotY-_this.getOrigin().y ,w+10, h, 0, -h ,w+10, h);
+						ctx.drawImage(img, v[i].pivotX-_this.getOrigin().x, v[i].pivotY-_this.getOrigin().y ,w+20, h, 0, -h ,w+20, h);
 					}else{
 						ctx.clip();
 						ctx.drawImage(img, v[i].pivotX-_this.getOrigin().x, v[i].pivotY-_this.getOrigin().y ,w, h, 0, -h ,w, h);
 	
 					}
-					/*
-						ctx.clip();
-						ctx.drawImage(img, v[i].pivotX-_this.getOrigin().x, v[i].pivotY-_this.getOrigin().y ,w, h, 0, -h ,w, h);
-	*/
 					
 					ctx.restore();
 					if (meshToggle) ctx.stroke();
 				}
 			}
 		}
-		
-		// public clear : Triangler
 		
 		// public getMesh : Mesh
 		this.getMesh = function (){
@@ -133,5 +134,4 @@ function Triangler (c, src, px, py, segm, loadfn) {
 		// end of Triangler return Triangler !!
 		return this;
 	} // Triangler
-
 ;
