@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Triangler.jsのデモ</title>
+		<style>
+			canvas, html, body {
+				padding: 0;
+				margin: 0;
+			}
+			canvas {
+				background: url(img/grid.png);
+			}
+		</style>
+		
+		<script type="text/javascript" src="js/triangler.js"></script>
+		<script>
+		window.onload = function () {
+			var seg = 10; //ポリゴン分割数
+			var m = new Triangler("cvs","img/chibikoro.jpg?", 80, 40, seg, function (e){
+				//m.stroke(true);/*これをするとメッシュが表示される*/
+				var r = 30/seg, cr = 0;
+				for (var i=0, l=m.getMesh().length; i<l; i++) {
+					var p = m.getMesh()[i];
+					p.x += parseInt(Math.cos(cr*r*Math.PI/180)*40);
+					p.y += parseInt(Math.cos(cr*1*Math.PI/180)*50);
+					cr++;
+				}
+				m.draw();
+			});
+		}
+		</script>
+	</head>
+	
+	<body>
+		<canvas id="cvs" width="800" height="800"></canvas>
+	</body>
+</html>
