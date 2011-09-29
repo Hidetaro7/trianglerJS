@@ -57,7 +57,7 @@ function Triangler (c, src, px, py, segm, loadfn) {
 					ctx.beginPath();
 					ctx.moveTo(v[i].x,   v[i].y);
 					ctx.lineTo(v[i+1].x, v[i+1].y);
-					//ctx.lineTo(v[i+seg+2].x,   v[i+seg+1].y); //追加
+					ctx.lineTo(v[i+seg+2].x,   v[i+seg+1].y); //追加
 					ctx.lineTo(v[i+seg+1].x,   v[i+seg+1].y);
 					ctx.closePath();
 					ctx.clip();
@@ -76,7 +76,7 @@ function Triangler (c, src, px, py, segm, loadfn) {
 					ctx.beginPath();
 					ctx.lineTo(v[i+1].x, v[i+1].y);
 					ctx.lineTo(v[i+seg+1].x, v[i+seg+1].y);
-					ctx.lineTo(v[i+seg+2].x, v[i+seg+2].y);
+					ctx.lineTo(v[i+seg+2].x+20, v[i+seg+2].y+20);
 					ctx.closePath();
 					
 					t1 = (v[i+seg+2].x - v[i+seg+1].x)/w;
@@ -87,7 +87,7 @@ function Triangler (c, src, px, py, segm, loadfn) {
 					ctx.setTransform(t1,t2,t3,t4, v[i+seg+1].x, v[i+seg+1].y);
 					
 					
-					/*if(!v[i+1].corner) { 
+					if(!v[i+1].corner) { 
 					//端っこ以外
 						ctx.clip();
 						ctx.drawImage(img, v[i].pivotX-_this.getOrigin().x, v[i].pivotY-_this.getOrigin().y ,w+10, h, 0, -h ,w+10, h);
@@ -96,10 +96,10 @@ function Triangler (c, src, px, py, segm, loadfn) {
 						ctx.drawImage(img, v[i].pivotX-_this.getOrigin().x, v[i].pivotY-_this.getOrigin().y ,w, h, 0, -h ,w, h);
 	
 					}
-					*/
+					/*
 						ctx.clip();
 						ctx.drawImage(img, v[i].pivotX-_this.getOrigin().x, v[i].pivotY-_this.getOrigin().y ,w, h, 0, -h ,w, h);
-	
+	*/
 					
 					ctx.restore();
 					if (meshToggle) ctx.stroke();
